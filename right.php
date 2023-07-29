@@ -1,5 +1,7 @@
 <?php
 
+/** @var \Modules\Base\Classes\Fetch\Rights $this */
+
 $this->add_right("media", "media", "administrator", view:true, add:true, edit:true, delete:true);
 $this->add_right("media", "media", "manager", view:true, add:true, edit:true, delete:true);
 $this->add_right("media", "media", "supervisor", view:true, add:true, edit:true, delete:true);
