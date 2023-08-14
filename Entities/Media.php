@@ -47,7 +47,7 @@ class Media extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('name')->type('text')->ordering(true);
+        $fields->name('name')->html('text')->ordering(true);
 
         return $fields;
 
@@ -63,7 +63,7 @@ class Media extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/2');
+        $fields->name('name')->html('text')->group('w-1/2');
 
         return $fields;
 
@@ -79,7 +79,7 @@ class Media extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/6');
+        $fields->name('name')->html('text')->group('w-1/6');
 
         return $fields;
 
@@ -90,10 +90,10 @@ class Media extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function migration(Blueprint $table): void
+    public function fields(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->string('name');
+        $this->fields->increments('id')->html('text');
+        $this->fields->string('name')->html('text');
     }
 
 }
