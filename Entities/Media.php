@@ -3,8 +3,6 @@
 namespace Modules\Media\Entities;
 
 use Illuminate\Database\Schema\Blueprint;
-use Modules\Base\Classes\Views\FormBuilder;
-use Modules\Base\Classes\Views\ListTable;
 use Modules\Base\Entities\BaseModel;
 
 class Media extends BaseModel
@@ -14,7 +12,7 @@ class Media extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name' . 'description', 'published'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -38,64 +36,19 @@ class Media extends BaseModel
     protected $table = "media";
 
     /**
-     * Function for defining list of fields in table view.
-     *
-     * @return ListTable
-     */
-    public function listTable(): ListTable
-    {
-        // listing view fields
-        $fields = new ListTable();
-
-        $fields->name('name')->html('text')->ordering(true);
-
-        return $fields;
-
-    }
-
-    /**
-     * Function for defining list of fields in form view.
-     *
-     * @return FormBuilder
-     */
-    public function formBuilder(): FormBuilder
-    {
-        // listing view fields
-        $fields = new FormBuilder();
-
-        $fields->name('name')->html('text')->group('w-1/2');
-
-        return $fields;
-
-    }
-
-    /**
-     * Function for defining list of fields in filter view.
-     *
-     * @return FormBuilder
-     */
-    public function filter(): FormBuilder
-    {
-        // listing view fields
-        $fields = new FormBuilder();
-
-        $fields->name('name')->html('text')->group('w-1/6');
-
-        return $fields;
-
-    }
-    /**
      * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
+        $this->fields->string('description')->html('textarea');
+        $this->fields->string('published')->html('switch');
     }
 
 }
